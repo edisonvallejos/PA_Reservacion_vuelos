@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controlador.CancelarModificarController;
+import Controlador.ListaVuelosController;
 import Controlador.VueloController;
 
 /**
@@ -29,8 +31,8 @@ public class GestionVuelos extends javax.swing.JFrame {
     private void initComponents() {
 
         btnAgregarVuelo = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnVerVuelos = new javax.swing.JButton();
+        btnCancelarModificar = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,10 +45,21 @@ public class GestionVuelos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("Ver lista de vuelos");
+        btnVerVuelos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnVerVuelos.setText("Ver lista de vuelos");
+        btnVerVuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerVuelosActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton3");
+        btnCancelarModificar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnCancelarModificar.setText("CAMCELAR/MODIFICAR VUELO");
+        btnCancelarModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarModificarActionPerformed(evt);
+            }
+        });
 
         btnAtras.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         btnAtras.setText("ATRAS");
@@ -63,12 +76,11 @@ public class GestionVuelos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAgregarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(btnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelarModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerVuelos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAgregarVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,9 +88,9 @@ public class GestionVuelos extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(btnAgregarVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVerVuelos, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -103,6 +115,18 @@ public class GestionVuelos extends javax.swing.JFrame {
      vistaAgregar.setVisible(true);
     
     }//GEN-LAST:event_btnAgregarVueloActionPerformed
+
+    private void btnVerVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVuelosActionPerformed
+       ListaVuelos vistaLista = new ListaVuelos();
+       ListaVuelosController controlador = new ListaVuelosController(vistaLista);
+    vistaLista.setVisible(true);
+    }//GEN-LAST:event_btnVerVuelosActionPerformed
+
+    private void btnCancelarModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarModificarActionPerformed
+        CancelarModificarVuelo vista = new CancelarModificarVuelo();
+         CancelarModificarController controlador = new CancelarModificarController(vista);
+        vista.setVisible(true);
+    }//GEN-LAST:event_btnCancelarModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,7 +166,7 @@ public class GestionVuelos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarVuelo;
     private javax.swing.JButton btnAtras;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCancelarModificar;
+    private javax.swing.JButton btnVerVuelos;
     // End of variables declaration//GEN-END:variables
 }

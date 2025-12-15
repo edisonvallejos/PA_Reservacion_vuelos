@@ -74,9 +74,10 @@ public class VueloModelo {
     
     // ==================== OBTENER TODOS LOS VUELOS (para listar) ====================
     public ResultSet obtenerVuelos() {
-        String sql = "SELECT v.*, a.modelo, a.matricula FROM vuelo v " +
-                     "JOIN avion a ON v.id_avion = a.id_avion " +
-                     "ORDER BY v.fecha_salida, v.hora_salida";
+       String sql = "SELECT v.*, a.modelo, a.matricula FROM vuelo v " +
+                 "JOIN avion a ON v.id_avion = a.id_avion " +
+                 "WHERE v.estado = 'Activo' " +  // <-- Solo activos
+                 "ORDER BY v.fecha_salida, v.hora_salida";
         
         try {
             Statement stmt = conexion.createStatement();
@@ -86,6 +87,25 @@ public class VueloModelo {
             return null;
         }
     }
+    
+    // ==================== OBTENER UN VUELO POR SU ID ====================
+public ResultSet obtenerVueloPorId(int idVuelo) {
+    String sql = "SELECT v.*, a.modelo, a.matricula FROM vuelo v " +
+                 "JOIN avion a ON v.id_avion = a.id_avion " +
+                 "WHERE v.id_vuelo = ?";
+    
+    try {
+        PreparedStatement pst = conexion.prepareStatement(sql);
+        pst.setInt(1, idVuelo);
+        return pst.executeQuery();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al obtener vuelo: " + e.getMessage());
+        return null;
+    }
+}
+    
+    
+    
     
     // ==================== CANCELAR VUELO (SP) ====================
     public boolean cancelarVuelo(int idVuelo) {
