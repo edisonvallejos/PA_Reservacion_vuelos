@@ -1,4 +1,4 @@
-// Controlador/LoginControlador.java
+
 package Controlador;
 
 import Modelo.Usuario;
@@ -33,11 +33,11 @@ public class LoginControlador {
         if (rol != null) {
             Usuario.cedulaLogueada = cedula;
             if ("admin".equals(rol)) {
-                new Vista.VMenuAdmin().setVisible(true); // ← abre menú admin
+                new Vista.VMenuAdmin().setVisible(true); //  abre menú admin
           } else {
-                new Vista.VMenuCliente().setVisible(true); // ← abre menú cliente
+                new Vista.VMenuCliente().setVisible(true); //  abre menú cliente
           }
-          vista.dispose(); // cierra login
+          vista.dispose();
        } else {
             JOptionPane.showMessageDialog(vista, "Cédula o contraseña incorrectos.");
 }

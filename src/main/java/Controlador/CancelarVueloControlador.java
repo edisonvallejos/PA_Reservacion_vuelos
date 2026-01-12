@@ -1,4 +1,4 @@
-// Controlador/CancelarVueloControlador.java
+
 package Controlador;
 
 import Modelo.Vuelo;
@@ -29,7 +29,7 @@ public class CancelarVueloControlador {
     }
 
     private void cargarVuelos() {
-        ResultSet rs = Vuelo.listarVuelos(); // reutiliza el método del paso anterior
+        ResultSet rs = Vuelo.listarVuelos();
         try {
             while (rs != null && rs.next()) {
                 modeloTabla.addRow(new Object[]{
@@ -63,9 +63,15 @@ public class CancelarVueloControlador {
             return;
         }
 
-        if (Vuelo.cancelarVuelo(idVuelo)) {
+        String motivo = JOptionPane.showInputDialog(vista, "Motivo de cancelación:");
+        if (motivo == null || motivo.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(vista, "Cancelación cancelada. Se requiere un motivo.");
+            return;
+        }
+
+        if (Vuelo.cancelarVuelo(idVuelo, motivo.trim())) {
             modeloTabla.setValueAt("Cancelado", fila, 7);
-            JOptionPane.showMessageDialog(vista, "Vuelo cancelado correctamente.");
+            JOptionPane.showMessageDialog(vista, "Vuelo cancelado correctamente.\nMotivo: " + motivo);
         } else {
             JOptionPane.showMessageDialog(vista, "Error al cancelar el vuelo.");
         }

@@ -10,7 +10,9 @@ C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Controlador\BuscarVuelosControlador.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Vista\VMenuAdmin.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Modelo\ConexionBDD.java
+C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Modelo\AsientoInfo.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Modelo\Usuario.java
+C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Vista\VMisReservas.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Vista\VRegistroVuelo.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Vista\VLogin.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Controlador\CatalogoAvionesControlador.java
@@ -18,6 +20,7 @@ C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Vista\VMenuCliente.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Controlador\CancelarVueloControlador.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Controlador\MenuClienteControlador.java
+C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Controlador\MisReservasControlador.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Controlador\RegistroVueloControlador.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Vista\VRegistro.java
 C:\Users\DELL\Documents\NetBeansProjects\Reservacion_tickets_avion\src\main\java\Modelo\Avion.java

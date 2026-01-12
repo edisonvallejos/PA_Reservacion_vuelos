@@ -1,4 +1,4 @@
-// Controlador/ListaReservasControlador.java
+
 package Controlador;
 
 import Modelo.Reserva;
@@ -75,7 +75,7 @@ public class ListaReservasControlador {
         );
 
         if (confirm == JOptionPane.YES_OPTION) {
-            if (Reserva.cancelarReserva(idReserva)) {
+            if (Reserva.cancelarReserva(idReserva, "admin")) {
                 modeloTabla.setValueAt("Cancelada", fila, 8);
                 JOptionPane.showMessageDialog(vista, "Reserva cancelada correctamente.");
             } else {

@@ -9,7 +9,7 @@ public class MenuClienteControlador {
     public MenuClienteControlador(VMenuCliente vista) {
         this.vista = vista;
         vista.btnBuscarVuelos.addActionListener(e -> {
-            new Vista.VBuscarVuelos().setVisible(true); // ya no necesita parámetro
+            new Vista.VBuscarVuelos().setVisible(true);
         });
         vista.btnCerrarSesion.addActionListener(e -> {
             Usuario.cedulaLogueada = null; // limpia al salir

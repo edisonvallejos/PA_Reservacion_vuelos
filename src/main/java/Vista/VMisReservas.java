@@ -4,6 +4,20 @@
  */
 package Vista;
 
+import Modelo.Reserva;
+import Modelo.Usuario;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
@@ -16,6 +30,7 @@ public class VMisReservas extends javax.swing.JFrame {
     public VMisReservas() {
         initComponents();
         new Controlador.MisReservasControlador(this);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,6 +45,8 @@ public class VMisReservas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMisReservas = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnGenerarPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +70,15 @@ public class VMisReservas extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setText("CANCELAR RESERVA");
+
+        btnGenerarPDF.setText("IMPRIMIR PDF");
+        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,8 +88,12 @@ public class VMisReservas extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(264, 264, 264)
+                .addGap(17, 17, 17)
+                .addComponent(btnCancelar)
+                .addGap(107, 107, 107)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115)
+                .addComponent(btnGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,7 +102,10 @@ public class VMisReservas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGenerarPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -84,6 +117,74 @@ public class VMisReservas extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
+        // TODO add your handling code here:
+        // Obtener cédula del usuario logueado (ajusta según tu sistema)
+String cedula = Usuario.cedulaLogueada; // o como lo tengas
+if (cedula == null || cedula.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Usuario no identificado.");
+    return;
+}
+
+try {
+    Document document = new Document();
+    String nombreArchivo = "reservas_" + cedula + ".pdf";
+    PdfWriter.getInstance(document, new FileOutputStream(nombreArchivo));
+    document.open();
+    document.setMargins(50, 50, 50, 50);
+    document.setPageSize(PageSize.A4);
+
+    Font tituloFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16, BaseColor.BLUE);
+    Paragraph titulo = new Paragraph("MIS RESERVAS", tituloFont);
+    titulo.setAlignment(Element.ALIGN_CENTER);
+    document.add(titulo);
+    document.add(new Paragraph(" "));
+
+    // Listar reservas
+    ResultSet rs = Reserva.listarMisReservas(cedula);
+    boolean hayReservas = false;
+    Font datosFont = FontFactory.getFont(FontFactory.HELVETICA, 11, BaseColor.BLACK);
+
+    while (rs != null && rs.next()) {
+        hayReservas = true;
+        String linea = "ID: " + rs.getInt("id_reserva") +
+                      " | Vuelo: " + rs.getString("origen") + " → " + rs.getString("destino") +
+                      " | Fecha: " + rs.getDate("fecha_salida") +
+                      " | Asiento: " + rs.getString("numero_asiento") +
+                      " | Estado: " + rs.getString("estado_reserva");
+
+        Paragraph parrafo = new Paragraph(linea, datosFont);
+        parrafo.setSpacingAfter(8);
+        document.add(parrafo);
+    }
+
+    if (!hayReservas) {
+        Paragraph sinReservas = new Paragraph("No tiene reservas activas.", datosFont);
+        sinReservas.setAlignment(Element.ALIGN_CENTER);
+        document.add(sinReservas);
+    }
+
+    document.close();
+    JOptionPane.showMessageDialog(this, "PDF generado: " + nombreArchivo);
+
+} catch (Exception e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Error al generar PDF: " + e.getMessage());
+}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnGenerarPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,7 +222,9 @@ public class VMisReservas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tablaMisReservas;
     // End of variables declaration//GEN-END:variables

@@ -18,6 +18,7 @@ public class VMenuCliente extends javax.swing.JFrame {
     public VMenuCliente() {
         initComponents();
         new Controlador.MenuClienteControlador(this);
+        this.setLocationRelativeTo(null);
      
     }
 

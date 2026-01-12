@@ -16,8 +16,8 @@ public class Vuelo {
             
             stmt.setString(1, origen);
             stmt.setString(2, destino);
-            stmt.setString(3, fechaSalida); // formato 'yyyy-MM-dd'
-            stmt.setString(4, horaSalida);  // formato 'HH:mm:ss'
+            stmt.setString(3, fechaSalida); 
+            stmt.setString(4, horaSalida);  
             stmt.setDouble(5, precio);
             stmt.setInt(6, idAvion);
             
@@ -44,11 +44,12 @@ public class Vuelo {
     
 }
     
-public static boolean cancelarVuelo(int idVuelo) {
-    String sql = "{CALL sp_CancelarVuelo(?)}";
+public static boolean cancelarVuelo(int idVuelo, String motivo) {
+    String sql = "{CALL sp_CancelarVuelo(?, ?)}";
     try (Connection conn = ConexionBDD.getConnection();
          CallableStatement stmt = conn.prepareCall(sql)) {
         stmt.setInt(1, idVuelo);
+        stmt.setString(2, motivo);
         stmt.execute();
         return true;
     } catch (SQLException e) {

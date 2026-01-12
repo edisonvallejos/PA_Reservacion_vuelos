@@ -1,4 +1,4 @@
-// Controlador/CatalogoAvionesControlador.java
+
 package Controlador;
 
 import Modelo.Avion;

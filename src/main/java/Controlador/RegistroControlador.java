@@ -1,4 +1,4 @@
-// Controlador/RegistroControlador.java
+
 package Controlador;
 
 import Modelo.Usuario;
@@ -45,6 +45,6 @@ public class RegistroControlador {
     }
 
     private void cancelar() {
-        vista.dispose(); // Cierra la ventana
+        vista.dispose();
     }
 }

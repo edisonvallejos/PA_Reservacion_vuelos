@@ -20,13 +20,27 @@ public class VRegistroVuelo extends javax.swing.JFrame {
         cboOrigen.addItem("Quito");
         cboOrigen.addItem("Guayaquil");
         cboOrigen.addItem("Cuenca");
+        cboOrigen.addItem("Manta");
+        cboOrigen.addItem("Esmeraldas");
+        cboOrigen.addItem("Salinas");
+        cboOrigen.addItem("Nueva Loja");
 
+        
+        
         cboDestino.addItem("Quito");
         cboDestino.addItem("Guayaquil");
         cboDestino.addItem("Cuenca");
+        cboDestino.addItem("Manta");
+        cboDestino.addItem("Esmeraldas");
+        cboDestino.addItem("Salinas");
+        cboDestino.addItem("Nueva Loja");
+        
         
         cboAvion.addItem("1 - Boeing 737");
         cboAvion.addItem("2 - Airbus A320");
+        cboAvion.addItem("3 - Let L-410 Turbolet");
+        cboAvion.addItem("4 - IAI Arava");
+        cboAvion.addItem("5 - Dash 8 200");
     }
 
     /**

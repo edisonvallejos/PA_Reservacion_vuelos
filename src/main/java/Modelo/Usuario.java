@@ -1,4 +1,4 @@
-// Modelo/Usuario.java
+
 package Modelo;
 
 import java.sql.*;
@@ -8,7 +8,7 @@ public class Usuario {
 
     public static String cedulaLogueada = null;
     
-    // Método para validar login (acceso directo a BD)
+    // Método para validar login
     public static String validarLogin(String cedula, String contrasena) {
         String rol = null;
         String sql = "SELECT rol FROM usuario WHERE cedula = ? AND contrasena = ?";
@@ -27,10 +27,10 @@ public class Usuario {
             JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos.");
             e.printStackTrace();
         }
-        return rol; // devuelve "admin", "cliente" o null
+        return rol;
     }
 
-    // Validación de cédula ecuatoriana (método estático para reutilizar)
+    // Validación de cédula ecuatoriana
     public static boolean validarCedulaEcuatoriana(String cedula) {
         if (cedula == null || cedula.length() != 10) return false;
         try {
@@ -52,7 +52,7 @@ public class Usuario {
         }
     }
     
-    // Dentro de Modelo/Usuario.java
+    
 public static boolean registrar(String cedula, String nombres, String apellidos,
                                 String contrasena, String telefono) {
     // Validar que no exista ya un usuario con esa cédula
@@ -79,7 +79,7 @@ public static boolean registrar(String cedula, String nombres, String apellidos,
     }
 }
 
-// Método auxiliar para verificar si la cédula ya existe
+
 private static boolean existeUsuario(String cedula) {
     String sql = "SELECT id_usuario FROM usuario WHERE cedula = ?";
     try (Connection conn = ConexionBDD.getConnection();

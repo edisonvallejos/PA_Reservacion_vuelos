@@ -1,4 +1,4 @@
-// ConexionBDD.java (versión segura para proyectos pequeños)
+
 package Modelo;
 
 import java.sql.Connection;
